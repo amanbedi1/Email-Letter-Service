@@ -2,19 +2,47 @@ const Topic = require('../models/topic.js');
 const Content = require('../models/content.js');
 const utils = require('../utils.js'); 
 
+
+// Controller to add email of subscriber
 const addSubscriber = async(req,res)=>{
-    const {subscribers} = req.body; 
+    const {topic,user_mail} = req.body; 
 
-    const topic_set = new Set();
+    if(!topic){
+        return res.status(401).json({message:"Topic can't be empty"});
+    } 
 
-    subscribers.forEach((obj)=>{
-        topic_set.add(obj.topic);
-    });
+    if(!user_mail){
+        return res.status(401).json({message:"User Email is required"});
+    }
     
-    
+    try{
+        const t = await Topic.findOne({topic:topic}).exec(); 
+        if(!t){
+            const topic_obj = new Topic({topic:topic,userMails:[user_mail]});
+            try{
+                await topic_obj.save(); 
+            } catch(err){
+                console.log(err);
+                return res.status(401).json({message:"Something went wrong Please try again later"});
+            }
+        } else{
+            try{
+                await Topic.findOneAndUpdate(
+                    {topic:topic},
+                    {$addToSet : {userMails:user_mail}},
+                ).exec();
+            } catch(err){
+                console.log(err);
+                return res.status(401).json({message:"Something went wrong Please try again later"});
+            }
+        }
+        return res.status(201).json({message:"Successfully Added"});
+    } catch(err){
+        console.log(err);
+        return res.status(401).json({message:"Something went wrong Please try again later"});
+    }
 
 }
-
 
 // Controller to add Content in Database
 const addContent = async(req,res)=>{
@@ -49,5 +77,6 @@ const addContent = async(req,res)=>{
 }
 
 module.exports={
+    addSubscriber,
     addContent,
 }
