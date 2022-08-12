@@ -4,7 +4,7 @@ const contentSchema = new mongoose.Schema({
     contentSubject:{
         type:String,
     },
-    contentHTML:{
+    contentBody:{
         type:String, 
     },
     topics:[{
@@ -12,7 +12,7 @@ const contentSchema = new mongoose.Schema({
     }], 
     scheduledTime:{
         type:Number,
-    }
+    },
 }); 
 
 const Content = mongoose.model("Content",contentSchema);

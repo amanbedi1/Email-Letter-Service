@@ -1,7 +1,9 @@
 const routes = require('express').Router();
 const controller = require('../controllers/controller.js');
 
-routes.post('/add-content',controller.addContent);
-routes.post('/add-subscriber',controller.addSubscriber);
-
+routes.post('/addContent',controller.addContent);
+routes.post('/addSubscriber',controller.addSubscriber);
+routes.get('/getContent',controller.fetchContent);
+routes.get('/updateTime',controller.updateTime);
+routes.get('/getMails',controller.findMails);
 module.exports=routes;
