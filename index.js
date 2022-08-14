@@ -38,7 +38,7 @@ const bree = new Bree({
         },
         {
             name:'delete',
-            interval:'40s',
+            interval:'12h',
             timeout:'10s',
         }
     ]
