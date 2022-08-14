@@ -1,6 +1,7 @@
 const { default: mongoose } = require('mongoose');
 const Content = require('../models/content.js');
 const Queue = require('bull');
+const maxTime = require('../const.js');
 
 const CONNECTION_URL = process.env.CONNECTION_URL; 
 
@@ -30,7 +31,7 @@ const fetchContents = async()=>{
             for(topic of data[i].topics){
                 await topicEmailQueue.add({topic:topic,subject:data[i].contentSubject,body:data[i].contentBody});
             }
-            data[i].scheduledTime = 8640000000000000;
+            data[i].scheduledTime = maxTime;
             await data[i].save(); 
         } 
 
