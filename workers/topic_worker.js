@@ -5,7 +5,6 @@ const Topic = require('../models/topic.js');
 const CONNECTION_URL = process.env.CONNECTION_URL; 
 
 
-
 const fetchEmailsFromTopic = async(job)=>{
     const {topic,subject,body} = job.data; 
     try{

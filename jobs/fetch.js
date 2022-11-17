@@ -26,7 +26,7 @@ const fetchContents = async()=>{
         if(!data || !data.length){
             return;
         }
-        
+        console.log(data);
         for(let i=0;i<data.length;++i){
             for(topic of data[i].topics){
                 await topicEmailQueue.add({topic:topic,subject:data[i].contentSubject,body:data[i].contentBody});

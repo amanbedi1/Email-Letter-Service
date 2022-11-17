@@ -5,10 +5,12 @@ const utils = require('../utils.js');
 
 // Controller to add email of subscriber
 const addSubscriber = async(req,res)=>{
+    // console.log(req.body.topic); 
+    // console.log(req.body.user_mails);
     if(!req.body.topic || !req.body.user_mails){
         return res.status(401).json({message:"Invalid Request"});
     } 
-
+    
     const topic = utils.normalize(req.body.topic);
     const user_mails = utils.normalizeArray(req.body.user_mails);
 
@@ -69,6 +71,8 @@ const addContent = async(req,res)=>{
     });
 }
 
+
+// Testing/Experimental Controllers
 const fetchContent = async(_req,res)=>{
     try{
         const data  = await Content.find({}); 

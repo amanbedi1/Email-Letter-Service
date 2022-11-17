@@ -8,7 +8,9 @@ const sendMail = async(subject,body,recipent)=>{
           user: process.env.EMAIL_USERNAME, // generated gmail user
           pass: process.env.EMAIL_PASSWORD, // generated gmail password
         }
-      });
+    });
+      
+    
       
     let mail = {
         from: `Aman Bedi ${process.env.EMAIL_USERNAME}`,
@@ -19,7 +21,7 @@ const sendMail = async(subject,body,recipent)=>{
 
       transport.sendMail(mail, function(error, info){
         if (error) {
-          console.log(error);
+          console.log("I failed EMAIL");
         } else {
           console.log('Email sent: ' + info.response);
         }
