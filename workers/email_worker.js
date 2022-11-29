@@ -10,8 +10,8 @@ const sendMail = async(job)=>{
         host: 'smtp.ethereal.email',
         port: 587,
         auth: {
-            user: 'madalyn11@ethereal.email',
-            pass: 'bg9HFJVdU7YtXwCpFY'
+            user: 'jaycee28@ethereal.email',
+            pass: 'kCmcqufjng9kQVSNmw'
         }
     });
         
@@ -24,9 +24,9 @@ const sendMail = async(job)=>{
 
         transport.sendMail(mail, function(error, info){
         if (error) {
-            console.log("I failed EMAIL");
+            console.log(error);
         } else {
-            console.log('Email sent: ' + info.response);
+            // console.log('Email sent: ' + info.response);
         }
         });    
 }

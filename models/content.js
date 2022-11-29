@@ -14,6 +14,7 @@ const contentSchema = new mongoose.Schema({
         type:Number,
     },
 }); 
+contentSchema.index({scheduledTime:1});
 
 const Content = mongoose.model("Content",contentSchema);
 

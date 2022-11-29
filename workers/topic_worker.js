@@ -8,12 +8,12 @@ const CONNECTION_URL = process.env.CONNECTION_URL;
 const fetchEmailsFromTopic = async(job)=>{
     const {topic,subject,body} = job.data; 
     try{
-        await mongoose.connect(CONNECTION_URL,{
+        mongoose.connect(CONNECTION_URL,{
             useNewUrlParser: true,
             useUnifiedTopology: true,
         }); 
-        const data = await Topic.find({topic:topic},'userMails').exec(); 
-        const emails = data[0].userMails;
+        const data = await Topic.findOne({topic:topic},'userMails').exec(); 
+        const emails = data.userMails;
         if(!emails){
             return ;
         }
@@ -23,7 +23,7 @@ const fetchEmailsFromTopic = async(job)=>{
     } catch(err){
         console.log(err);
     } finally{
-        await mongoose.connection.close();
+        mongoose.connection.close();
     }
     return;
 }
