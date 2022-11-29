@@ -51,23 +51,6 @@ const bree = new Bree({
 
 
 
-// // Message Queue for relation bw topic and Content
-// const topicEmailQueue = new Queue("topicEmailQueue",{
-//     redis:{
-//         host : "localhost",
-//         port : process.env.REDIS_PORT,
-//     }
-// });
-// topicEmailQueue.process(2,path.resolve(__dirname,"workers/topic_worker.js"));
-
-// topicEmailQueue.on('completed',(job)=>{
-//     console.log(`completed my content topic queue job with job id as ${job.id}`)
-// });
-// topicEmailQueue.on("failed",(_job,result)=>{
-//     console.log(`Content Topic Queue failed with log ${result}`);
-// }); 
-
-
 // // Message Qeueue that contains email id and mails to send;
 const emailQueue = new Queue("emailQueue",{
     redis:{
